@@ -57,15 +57,23 @@ if (formManzanas) {
     const precioKilo = 4200;
     let porcentajeDescuento;
 
-    // Se aplican las condiciones de la tabla.
-    if (kilos <= 2) {
-      porcentajeDescuento = 0;
-    } else if (kilos <= 5) {
-      porcentajeDescuento = 0.10;
-    } else if (kilos <= 10) {
-      porcentajeDescuento = 0.15;
-    } else {
-      porcentajeDescuento = 0.20;
+    // Se aplican las condiciones de la tabla para asignar el porcentaje de descuento.
+    switch (true) {
+      case kilos <= 2:
+        porcentajeDescuento = 0;
+        break;
+
+      case kilos <= 5:
+        porcentajeDescuento = 0.10;
+        break;
+
+      case kilos <= 10:
+        porcentajeDescuento = 0.15;
+        break;
+
+      default:
+        porcentajeDescuento = 0.20;
+        break;
     }
 
     const valorCompra = kilos * precioKilo;

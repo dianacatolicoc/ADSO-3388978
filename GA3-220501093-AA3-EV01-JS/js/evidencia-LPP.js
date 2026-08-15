@@ -122,16 +122,13 @@ if (btnSerie) {
    Nota: Se utilizar directamente el botón "Finalizar registro" para mostrar resultados.
    --------------------------------------------------------- */
 
-let totalPersonas = 0;
-let hombres = 0;
-let mujeres = 0;
-let sumaEdadHombres = 0;
-let sumaEdadMujeres = 0;
-let menorEdad = null;
+// Arreglo donde se almacenan las personas registradas.
+let personasFiesta = [];
 
 const formFiesta = document.getElementById("formFiesta");
 
 if (formFiesta) {
+
   formFiesta.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -141,68 +138,135 @@ if (formFiesta) {
 
     error.textContent = "";
 
-    // Indicar que debe presionar "Finalizar registro".
+    // Validamos que la edad sea correcta.
     if (edad === 0) {
-      error.textContent = "La edad 0 finaliza el registro. Pulsa 'Finalizar registro'.";
+      error.textContent =
+        "La edad 0 finaliza el registro. Pulsa 'Finalizar registro'.";
       return;
     }
 
     // No se permiten menores de edad.
     if (edad < 18) {
-      error.textContent = "No se permiten menores de 18 años.";
+      error.textContent =
+        "No se permiten menores de 18 años.";
       return;
     }
 
-    if (!sexo) {
-      error.textContent = "Selecciona el sexo.";
+    // Verificamos que se haya seleccionado el sexo.
+    if (sexo === "") {
+      error.textContent =
+        "Debes seleccionar el sexo.";
       return;
     }
 
-    totalPersonas++;
+    // Guardamos los datos de la persona en el arreglo.
+    personasFiesta.push({
+      edad: edad,
+      sexo: sexo
+    });
 
-    // Se busca la edad mínima comparando cada edad ingresada.
-    if (menorEdad === null || edad < menorEdad) {
-      menorEdad = edad;
-    }
-
-    if (sexo === "H") {
-      hombres++;
-      sumaEdadHombres += edad;
-    } else {
-      mujeres++;
-      sumaEdadMujeres += edad;
-    }
-
+    // Limpiamos los campos para ingresar otra persona.
     document.getElementById("edadFiesta").value = "";
     document.getElementById("sexoFiesta").value = "";
-    error.textContent = "Persona agregada correctamente.";
+
+    error.textContent =
+      "Persona agregada correctamente.";
   });
 }
+
+
+/* ---------------------------------------------------------
+   FINALIZAR REGISTRO Y CALCULAR ESTADÍSTICAS
+   --------------------------------------------------------- */
 
 const finalizarFiesta = document.getElementById("finalizarFiesta");
 
 if (finalizarFiesta) {
-  finalizarFiesta.addEventListener("click", function () {
-    // Se evita dividir entre cero cuando no hay personas de un sexo.
-    const promedioHombres = hombres > 0 ? sumaEdadHombres / hombres : 0;
-    const promedioMujeres = mujeres > 0 ? sumaEdadMujeres / mujeres : 0;
 
+  finalizarFiesta.addEventListener("click", function () {
+
+    // Variables para almacenar los resultados.
+    let totalPersonas = 0;
+    let hombres = 0;
+    let mujeres = 0;
+
+    let sumaEdadHombres = 0;
+    let sumaEdadMujeres = 0;
+
+    let menorEdad = null;
+
+    // Se procesan las personas almacenadas una por una.
+    let posicion = 0;
+
+    if (personasFiesta.length > 0) {
+
+      do {
+
+        // Obtenemos la persona que estamos procesando.
+        const persona = personasFiesta[posicion];
+
+        // Contamos el total de personas.
+        totalPersonas++;
+
+        // Determinamos la persona más joven.
+        if (menorEdad === null || persona.edad < menorEdad) {
+          menorEdad = persona.edad;
+        }
+
+        // Clasificamos según el sexo.
+        if (persona.sexo === "H") {
+
+          hombres++;
+          sumaEdadHombres += persona.edad;
+
+        } else {
+
+          mujeres++;
+          sumaEdadMujeres += persona.edad;
+        }
+
+        // Pasamos a la siguiente persona.
+        posicion++;
+
+      } while (posicion < personasFiesta.length);
+    }
+
+    // Calculamos los promedios.
+
+    let promedioHombres = 0;
+    let promedioMujeres = 0;
+
+    if (hombres > 0) {
+      promedioHombres = sumaEdadHombres / hombres;
+    }
+
+    if (mujeres > 0) {
+      promedioMujeres = sumaEdadMujeres / mujeres;
+    }
+
+
+    // Mostramos los resultados en pantalla.
     document.getElementById("resultadoFiesta").innerHTML = `
       <h3>Resultado de la fiesta</h3>
       <p><strong>Total de asistentes:</strong> ${totalPersonas}</p>
-      <p><strong>Hombres:</strong> ${hombres}</p>
-      <p><strong>Mujeres:</strong> ${mujeres}</p>
-      <p><strong>Promedio de edad de hombres:</strong> ${promedioHombres.toFixed(2)}</p>
-      <p><strong>Promedio de edad de mujeres:</strong> ${promedioMujeres.toFixed(2)}</p>
-      <p><strong>Persona más joven:</strong> ${
-        menorEdad === null ? "No hay asistentes registrados" : menorEdad + " años"
-      }</p>
+      <p><strong>Hombres:</strong> ${hombres} </p>
+      <p><strong>Mujeres:</strong> ${mujeres} </p>
+      <p><strong>Promedio de edad de hombres:</strong> ${promedioHombres} años</p>
+      <p><strong>Promedio de edad de mujeres:</strong> ${promedioMujeres} años</p>
+      <p><strong>Persona más joven:</strong>
+        ${
+          menorEdad === null
+            ? "No hay asistentes registrados"
+            : menorEdad + " años"
+        }
+      </p>
     `;
 
-    document.getElementById("resultadoFiesta").classList.add("show");
+    // Hacemos visible el resultado.
+    document.getElementById("resultadoFiesta")
+      .classList.add("show");
   });
 }
-
 
 /* ---------------------------------------------------------
    ENUNCIADO 4: COSTO DE LLAMADA
