@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taller 2 - DFD</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<main class="container page">
+  <div class="topbar"><a class="back" href="../index.html">← Regresar</a></div>
+
+  <header class="workshop-hero">
+    <span class="eyebrow">TALLER 2 · DFD → JAVASCRIPT</span>
+    <h1>Ejercicios de algoritmos</h1>
+    <p>Abre cada enunciado para consultar el problema y ejecutar la solución.</p>
+  </header>
+
+  <section class="exercise-list">
+
+    <details class="exercise">
+      <summary><span class="exercise-number">01</span> Interés bancario</summary>
+      <div class="exercise-content">
+        <div class="statement">
+          <strong>Enunciado:</strong> una persona deposita hoy cierta cantidad de dinero en el banco, donde le reconocen
+          un interés del 2% mensual, capitalizado mensualmente. ¿Cuál será el saldo al cabo de 5 años?
+          Fórmula: Valor Futuro = Valor Presente × (1 + interés) ^ meses.
+        </div>
+
+        <form id="formInteres">
+          <div class="field">
+            <label for="valorPresente">Valor consignado</label>
+            <input id="valorPresente" type="number" min="0" step="0.01" required>
+          </div>
+          <button type="submit">Calcular valor futuro</button>
+        </form>
+
+        <div id="resultadoInteres" class="result"></div>
+      </div>
+    </details>
+
+    <details class="exercise">
+      <summary><span class="exercise-number">02</span> Descuento en compra de manzanas</summary>
+      <div class="exercise-content">
+        <div class="statement">
+          <strong>Enunciado:</strong> una frutería ofrece las manzanas a $4.200 el kilo, con un descuento de acuerdo
+          con la cantidad comprada. De 0 a 2 kg: 0%; de 2,01 a 5 kg: 10%; de 5,01 a 10 kg: 15%;
+          de 10,01 kg en adelante: 20%.
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Número de kilos</th>
+                <th>Descuento</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>0 - 2</td><td>0%</td></tr>
+              <tr><td>2,01 - 5</td><td>10%</td></tr>
+              <tr><td>5,01 - 10</td><td>15%</td></tr>
+              <tr><td>10,01 en adelante</td><td>20%</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <form id="formManzanas">
+          <div class="field">
+            <label for="kilos">Número de kilos</label>
+            <input id="kilos" type="number" min="0" step="0.01" required>
+          </div>
+          <button type="submit">Calcular compra</button>
+        </form>
+
+        <div id="resultadoManzanas" class="result"></div>
+      </div>
+    </details>
+
+    <details class="exercise">
+      <summary><span class="exercise-number">03</span> Función Y = x² − 2x</summary>
+      <div class="exercise-content">
+        <div class="statement">
+          <strong>Enunciado:</strong> dada la función Y = x² − 2x, desarrollar un algoritmo que imprima para valores
+          de x desde 1 hasta 10: la suma de todos los valores de Y; valores de Y múltiplos de 3;
+          suma de los múltiplos de 3; valores de Y cuyo último dígito sea 5; y suma de estos valores.
+        </div>
+
+        <button id="btnFuncion">Calcular resultados</button>
+        <div id="resultadoFuncion" class="result"></div>
+      </div>
+    </details>
+
+  </section>
+</main>
+
+<script src="../js/evidencia-DFD.js"></script>
+</body>
+</html>

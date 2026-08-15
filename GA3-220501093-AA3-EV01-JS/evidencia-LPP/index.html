@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taller 1 - LPP</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+<main class="container page">
+  <div class="topbar"><a class="back" href="../index.html">← Regresar</a></div>
+
+  <header class="workshop-hero">
+    <span class="eyebrow">TALLER 1 · LPP → JAVASCRIPT</span>
+    <h1>Ejercicios de lógica de programación</h1>
+    <p>Abre cada enunciado para consultar el problema y ejecutar la solución.</p>
+  </header>
+
+  <section class="exercise-list">
+
+    <details class="exercise">
+      <summary><span class="exercise-number">01</span> Salario neto de un vendedor</summary>
+      <div class="exercise-content">
+        <div class="statement">
+          <strong>Enunciado:</strong> Desarrollar un algoritmo que calcule el salario neto que debe recibir un vendedor.
+          Se debe tener en cuenta si tiene derecho o no al auxilio de transporte. El sueldo devengado es
+          salario básico × días laborados / 30. El auxilio corresponde a empleados cuyo salario sea menor o igual
+          a 2 SMMLV. Para 2017: SMMLV $737.717 y auxilio $83.140. La comisión de ventas es del 2%.
+          El salario neto es total devengado menos descuentos por préstamos.
+        </div>
+
+        <form id="formSalario">
+          <div class="form-grid">
+            <div class="field">
+              <label for="cedula">Cédula</label>
+              <input id="cedula" type="text" required>
+            </div>
+            <div class="field">
+              <label for="nombre">Nombre</label>
+              <input id="nombre" type="text" required>
+            </div>
+            <div class="field">
+              <label for="salario">Salario básico</label>
+              <input id="salario" type="number" min="0" required>
+            </div>
+            <div class="field">
+              <label for="dias">Días laborados (1-30)</label>
+              <input id="dias" type="number" min="1" max="30" required>
+            </div>
+            <div class="field">
+              <label for="ventas">Ventas del mes</label>
+              <input id="ventas" type="number" min="0" required>
+            </div>
+            <div class="field">
+              <label for="prestamos">Préstamos / descuentos</label>
+              <input id="prestamos" type="number" min="0" required>
+            </div>
+          </div>
+          <button type="submit">Calcular salario</button>
+          <div id="errorSalario" class="error"></div>
+        </form>
+
+        <div id="resultadoSalario" class="result"></div>
+      </div>
+    </details>
+
+    <details class="exercise">
+      <summary><span class="exercise-number">02</span> Primeros 20 términos de una serie</summary>
+      <div class="exercise-content">
+        <div class="statement">
+          <strong>Enunciado:</strong> hacer un algoritmo que imprima los primeros 20 términos de la siguiente serie:
+          1, 3, 6, 10, 15, 21, 28, [...]
+        </div>
+        <button id="btnSerie">Generar serie</button>
+        <div id="resultadoSerie" class="result"></div>
+      </div>
+    </details>
+
+    <details class="exercise">
+      <summary><span class="exercise-number">03</span> Datos de una fiesta</summary>
+      <div class="exercise-content">
+        <div class="statement">
+          <strong>Enunciado:</strong> desarrollar un algoritmo que permita calcular cuántas personas asistieron a una fiesta,
+          cuántos hombres y mujeres, el promedio de edades por sexo y la edad de la persona más joven.
+          No se permiten menores de edad. Se ingresan datos hasta que se introduzca una edad igual a cero.
+        </div>
+
+        <div class="note">
+          En esta versión web se agregan las personas una por una. La edad <strong>0</strong> equivale a finalizar el registro.
+        </div>
+
+        <form id="formFiesta">
+          <div class="form-grid">
+            <div class="field">
+              <label for="edadFiesta">Edad</label>
+              <input id="edadFiesta" type="number" min="0" required>
+            </div>
+            <div class="field">
+              <label for="sexoFiesta">Sexo</label>
+              <select id="sexoFiesta" required>
+                <option value="">Seleccione...</option>
+                <option value="H">Hombre</option>
+                <option value="M">Mujer</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit">Agregar persona</button>
+          <button type="button" class="secondary" id="finalizarFiesta">Finalizar registro</button>
+          <div id="errorFiesta" class="error"></div>
+        </form>
+
+        <div id="resultadoFiesta" class="result"></div>
+      </div>
+    </details>
+
+    <details class="exercise">
+      <summary><span class="exercise-number">04</span> Costo de una llamada telefónica</summary>
+      <div class="exercise-content">
+        <div class="statement">
+          <strong>Enunciado:</strong> hacer un algoritmo que imprima el costo de una llamada telefónica.
+          Toda llamada que dure tres minutos o menos cuesta $200. Cada minuto adicional cuesta $30.
+        </div>
+
+        <form id="formLlamada">
+          <div class="field">
+            <label for="minutos">Duración de la llamada (minutos)</label>
+            <input id="minutos" type="number" min="0" step="1" required>
+          </div>
+          <button type="submit">Calcular costo</button>
+        </form>
+
+        <div id="resultadoLlamada" class="result"></div>
+      </div>
+    </details>
+
+  </section>
+</main>
+
+<script src="../js/evidencia-LPP.js"></script>
+</body>
+</html>
