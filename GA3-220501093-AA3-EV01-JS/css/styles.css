@@ -82,7 +82,7 @@ a {
 
 .welcome h2 {
   margin: 12px 0 6px;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 .welcome p {
@@ -114,11 +114,11 @@ a {
 
 .workshop-card h3 {
   margin: 10px 0;
-  font-size: 1.8rem;
+  font-size: 1.2rem;
 }
 
-.workshop-card p {
-  min-height: 78px;
+.workshop-card li {
+  margin-inline: 30px;
   color: var(--muted);
 }
 
@@ -129,7 +129,7 @@ a {
   font-weight: 800;
 }
 
-/* ---------- Páginas de talleres ---------- */
+/* ---------- Páginas de evidencias ---------- */
 
 .page {
   padding: 36px 0 70px;
@@ -158,7 +158,7 @@ a {
 }
 
 .workshop-hero h1 {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 2vw, 1.7rem);
   line-height: 1.1;
   margin: 5px 0 10px;
 }
